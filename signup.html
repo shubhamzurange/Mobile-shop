@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Apna Collage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <form id="signupForm">
+        <h4>Sign Up</h4> 
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required minlength="4" maxlength="8"><br>
+
+        <label for="pass">Password</label>
+        <input type="password" id="pass" name="password" required minlength="4" maxlength="8"><br>
+
+        <button type="submit">Sign Up</button>
+        <p id="signupMessage" style="color: green; display: none;">Account created successfully! Redirecting to <a href="Login.html">Login</a>.</p>
+    </form>
+
+    <script>
+        const signupForm = document.getElementById("signupForm");
+        const signupMessage = document.getElementById("signupMessage");
+
+        signupForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get form input values
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("pass").value;
+
+            // Store username and password in localStorage
+            localStorage.setItem("username", username);
+            localStorage.setItem("password", password);
+
+            // Show success message and redirect after 2 seconds
+            signupMessage.style.display = "block";
+            setTimeout(function() {
+                window.location.href = "Login.html";  // Redirect to login page after 2 seconds
+            }, 2000);
+        });
+    </script>
+
+    
+
+</body>
+</html>

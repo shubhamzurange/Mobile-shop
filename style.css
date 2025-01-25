@@ -1,0 +1,141 @@
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(45deg, #ff6a00, #ff6a6a, #ff00c8);
+  background-size: 600% 600%;
+  animation: gradientAnimation 10s ease infinite; /* Animation for background gradient */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Keyframe animation for background gradient */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Bubbles styling */
+.bubble {
+  position: absolute;
+  bottom: -50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  opacity: 0.7;
+  pointer-events: none; /* Prevent bubbles from interfering with form */
+  animation: bubbleAnimation 6s infinite;
+  filter: blur(2px);
+}
+
+.bubble:nth-child(odd) {
+  animation-duration: 5s;
+  animation-delay: -2s;
+}
+
+.bubble:nth-child(even) {
+  animation-duration: 7s;
+  animation-delay: -1s;
+}
+
+/* Bubble size and motion animation */
+@keyframes bubbleAnimation {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(100px) translateY(-800px);
+    opacity: 0;
+  }
+}
+
+/* Login form container styling */
+form {
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+  width: 320px;
+  text-align: center;
+  z-index: 10; /* Make sure form appears above bubbles */
+}
+
+/* Heading style */
+h4 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #333;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Label styling */
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-align: left;
+  color: #555;
+}
+
+/* Input field styling */
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s ease;
+}
+
+/* Focused input field styling */
+input[type="text"]:focus, input[type="password"]:focus {
+  border-color: #ff6a6a;
+  box-shadow: 0 0 5px rgba(255, 106, 106, 0.3);
+}
+
+/* Submit button styling */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff6a00;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  letter-spacing: 1px;
+}
+
+/* Hover effect for button */
+button[type="submit"]:hover {
+  background-color: #ff6a6a;
+}
+
+/* Small responsive adjustments */
+@media (max-width: 400px) {
+  form {
+    width: 90%;
+  }
+}

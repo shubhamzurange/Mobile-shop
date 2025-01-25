@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password - Apna Collage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <form id="forgotPasswordForm">
+        <h4>Change Password</h4>
+        
+        <!-- Username Input -->
+        <label for="username">Enter your username:</label>
+        <input type="text" id="username" name="username" required><br>
+
+        <!-- Current Password Input -->
+        <label for="current-password">Enter your current password:</label>
+        <input type="password" id="current-password" name="current-password" required minlength="4" maxlength="8"><br>
+
+        <!-- New Password Input -->
+        <label for="new-password">Enter new password:</label>
+        <input type="password" id="new-password" name="new-password" required minlength="4" maxlength="8"><br>
+
+        <!-- Confirm New Password Input -->
+        <label for="confirm-password">Confirm new password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required minlength="4" maxlength="8"><br>
+
+        <button type="submit">Reset Password</button>
+        
+        <!-- Success or Error Messages -->
+        <p id="resetMessage" style="color: green; display: none;">Password reset successfully! You can now <a href="Login.html">login</a>.</p>
+        <p id="errorMessage" style="color: red; display: none;">Username or current password is incorrect. Please try again.</p>
+        <p><a href="Login.html">Go back to Login</a></p>
+    </form>
+
+    <script>
+        const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+        const resetMessage = document.getElementById("resetMessage");
+        const errorMessage = document.getElementById("errorMessage");
+
+        forgotPasswordForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get form input values
+            const username = document.getElementById("username").value;
+            const currentPassword = document.getElementById("current-password").value;
+            const newPassword = document.getElementById("new-password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+
+            // Get the stored username and password from localStorage (for demo purposes)
+            const storedUsername = localStorage.getItem("username");
+            const storedPassword = localStorage.getItem("password");
+
+            // Check if the entered username matches the stored username
+            if (username !== storedUsername) {
+                errorMessage.textContent = "Username is incorrect. Please try again.";
+                errorMessage.style.display = "block";
+                resetMessage.style.display = "none";
+                return;
+            }
+
+            // Check if the current password matches the stored password
+            if (currentPassword !== storedPassword) {
+                errorMessage.textContent = "Current password is incorrect. Please try again.";
+                errorMessage.style.display = "block";
+                resetMessage.style.display = "none";
+                return;
+            }
+
+            // Check if the new password and confirm password match
+            if (newPassword !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            // Store the new password in localStorage (for demo purposes only)
+            localStorage.setItem("password", newPassword);
+
+            // Show success message and redirect to login after 2 seconds
+            resetMessage.style.display = "block";
+            errorMessage.style.display = "none";
+            setTimeout(function() {
+                window.location.href = "Login.html";  // Redirect to login page
+            }, 2000);
+        });
+    </script>
+
+</body>
+</html>

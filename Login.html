@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Apna Collage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bubble" style="width: 50px; height: 50px;"></div>
+    <div class="bubble" style="width: 70px; height: 70px;"></div>
+    <div class="bubble" style="width: 40px; height: 40px;"></div>
+    <div class="bubble" style="width: 60px; height: 60px;"></div>
+    <div class="bubble" style="width: 80px; height: 80px;"></div>
+    <div class="bubble" style="width: 55px; height: 55px;"></div>
+
+    <form id="loginForm" action="home.html" method="GET">
+        <h4>Login</h4> 
+        <label for="username"><b>Username</b></label>
+        <input type="text" id="username" name="username" required minlength="4" maxlength="8" placeholder="Enter username"><br>
+        
+        <label for="pass" ><b>Password</b></label>
+        <input type="password" id="pass" name="password" required minlength="4" maxlength="8" placeholder="Enter password"><br>
+
+        <button type="submit">Login</button>
+        <p id="errorMessage" style="color: red; display: none;">Invalid Username or Password!</p>
+        
+        <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+        
+        <!-- Forgot Password Link -->
+        <p><a href="forget-pass.html">Change Password?</a></p>
+    </form>
+
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const errorMessage = document.getElementById("errorMessage");
+
+        loginForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get form input values
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("pass").value;
+
+            // Hardcoded user for demo purposes (normally this would be checked against a database)
+            const storedUsername = localStorage.getItem("username");
+            const storedPassword = localStorage.getItem("password");
+
+            // Check if username and password match the stored values
+            if (username === storedUsername && password === storedPassword) {
+                window.location.href = "home.html";  // Redirect to home page if credentials are correct
+            } else {
+                errorMessage.style.display = "block";  // Show error message if credentials are wrong
+            }
+        });
+    </script>
+
+</body>
+</html>
